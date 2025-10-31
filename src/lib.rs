@@ -155,10 +155,10 @@
     clippy::needless_pass_by_value
 )]
 
-// #[cfg(all(
-    // not(all(target_arch = "wasm32", any(target_os = "unknown", target_os = "wasi"))),
-    // feature = "proc-macro"
-// ))]
+#[cfg(all(
+    not(all(target_arch = "wasm32", any(target_os = "unknown", target_os = "wasi"))),
+    feature = "proc-macro"
+))]
 extern crate proc_macro;
 
 use std::collections::HashSet;
@@ -2475,10 +2475,10 @@ pub trait MacroResult {
     ///
     /// *This method is available if `synstructure` is built with the
     /// `"proc-macro"` feature.*
-    // #[cfg(all(
-    //     not(all(target_arch = "wasm32", any(target_os = "unknown", target_os = "wasi"))),
-    //     feature = "proc-macro"
-    // ))]
+    #[cfg(all(
+        not(all(target_arch = "wasm32", any(target_os = "unknown", target_os = "wasi"))),
+        feature = "proc-macro"
+    ))]
     fn into_stream(self) -> proc_macro::TokenStream
     where
         Self: Sized,
@@ -2490,10 +2490,10 @@ pub trait MacroResult {
     }
 }
 
-// #[cfg(all(
-//     not(all(target_arch = "wasm32", any(target_os = "unknown", target_os = "wasi"))),
-//     feature = "proc-macro"
-// ))]
+#[cfg(all(
+    not(all(target_arch = "wasm32", any(target_os = "unknown", target_os = "wasi"))),
+    feature = "proc-macro"
+))]
 impl MacroResult for proc_macro::TokenStream {
     fn into_result(self) -> Result<TokenStream> {
         Ok(self.into())
